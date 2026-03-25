@@ -1,0 +1,8 @@
+*
+!.gitignore
+!README.md
+!build.ps1
+!DJSSP_PSO_HH/
+!DJSSP_PSO_HH/**
+!data/
+!data/jobshop1.txt
