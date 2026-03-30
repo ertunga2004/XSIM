@@ -1,8 +1,8 @@
-*
-!.gitignore
-!README.md
-!build.ps1
-!DJSSP_PSO_HH/
-!DJSSP_PSO_HH/**
-!data/
-!data/jobshop1.txt
+help_bg.log
+help_bg.err.log
+ping_test.log
+ping2.log
+test_abz7_modular.log
+test_abz7_modular.err.log
+test_swv11_modular.log
+test_swv11_modular.err.log
