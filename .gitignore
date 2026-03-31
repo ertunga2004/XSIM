@@ -6,3 +6,4 @@ test_abz7_modular.log
 test_abz7_modular.err.log
 test_swv11_modular.log
 test_swv11_modular.err.log
+exe/gantt_*.csv
