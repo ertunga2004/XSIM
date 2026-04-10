@@ -7,3 +7,6 @@ test_abz7_modular.err.log
 test_swv11_modular.log
 test_swv11_modular.err.log
 exe/gantt_*.csv
+hunt_ft06/*.log
+hunt_ft06/best_*.csv
+hunt_ft06/_work/
