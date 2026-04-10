@@ -44,7 +44,7 @@ $sgs     = "gt"
 $tsmove  = "mixed"
 
 # Small search grid so weak machines can still finish quickly.
-$seeds   = @(55, 11, 22)
+$seeds   = @(55, 11, 22, 99)
 $tabus   = @(5, 3, 7)
 $tsiters = @(30, 10, 50)
 
