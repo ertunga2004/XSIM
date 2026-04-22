@@ -10,3 +10,6 @@ exe/gantt_*.csv
 hunt_ft06/*.log
 hunt_ft06/best_*.csv
 hunt_ft06/_work/
+hunts/*/logs/
+hunts/*/results/
+hunts/*/gantt_*.csv
