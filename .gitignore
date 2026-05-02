@@ -14,3 +14,21 @@ hunts/*/logs/
 hunts/*/results/
 hunts/*/gantt_*.csv
 reports/
+
+# Local/generated outputs
+Results/
+reports/
+gantt_*.csv
+*.log
+test_*.log
+ping_test.log
+hunt_*.ps1
+hunt_ft06/
+hunt_abz7/
+hunt_la19/
+hunt_orb01/
+hunt_swv11/
+yedek/
+xsim.exe
+xsimv2.exe
+Xsimv36.cpp
