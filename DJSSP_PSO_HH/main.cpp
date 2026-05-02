@@ -1,14 +1,29 @@
 #include "InstanceGenerator.h"
 #include "Pso.h"
 
+#include <chrono>
+#include <ctime>
+#include <filesystem>
+#include <iomanip>
+
 namespace djssp {
 namespace {
+
+namespace fs = std::filesystem;
 
 struct Stats {
     double mean = 0.0;
     double std = 0.0;
     double mn = 0.0;
     double mx = 0.0;
+};
+
+struct ConvergenceRow {
+    int iteration = 0;
+    double iter_best = 0.0;
+    double iter_avg = 0.0;
+    double iter_worst = 0.0;
+    double best_cmax = 0.0;
 };
 
 Stats compute_stats(const std::vector<double>& values) {
@@ -29,6 +44,256 @@ Stats compute_stats(const std::vector<double>& values) {
     var /= static_cast<double>(values.size());
     stats.std = std::sqrt(var);
     return stats;
+}
+
+std::string html_escape(const std::string& value) {
+    std::string escaped;
+    escaped.reserve(value.size());
+    for (char ch : value) {
+        switch (ch) {
+            case '&': escaped += "&amp;"; break;
+            case '<': escaped += "&lt;"; break;
+            case '>': escaped += "&gt;"; break;
+            case '"': escaped += "&quot;"; break;
+            case '\'': escaped += "&#39;"; break;
+            default: escaped += ch; break;
+        }
+    }
+    return escaped;
+}
+
+std::string current_timestamp() {
+    const auto now = std::chrono::system_clock::now();
+    const std::time_t raw = std::chrono::system_clock::to_time_t(now);
+    std::tm local{};
+#ifdef _WIN32
+    localtime_s(&local, &raw);
+#else
+    localtime_r(&raw, &local);
+#endif
+    std::ostringstream out;
+    out << std::put_time(&local, "%Y-%m-%d %H:%M:%S");
+    return out.str();
+}
+
+std::string job_color(int job_id) {
+    static const std::vector<std::string> colors = {
+        "#2563eb", "#dc2626", "#16a34a", "#9333ea", "#ea580c",
+        "#0891b2", "#be123c", "#4f46e5", "#65a30d", "#b45309",
+        "#0f766e", "#7c3aed", "#c2410c", "#0369a1", "#a21caf"
+    };
+    return colors[static_cast<size_t>(std::max(0, job_id)) % colors.size()];
+}
+
+void write_gantt_html(
+    const fs::path& output_path,
+    const std::string& instance,
+    const std::vector<GanttLogger::Entry>& rows
+) {
+    std::vector<GanttLogger::Entry> sorted = rows;
+    std::sort(sorted.begin(), sorted.end(), [](const GanttLogger::Entry& a, const GanttLogger::Entry& b) {
+        if (a.machine_id != b.machine_id) return a.machine_id < b.machine_id;
+        if (a.start != b.start) return a.start < b.start;
+        if (a.end != b.end) return a.end < b.end;
+        if (a.job_id != b.job_id) return a.job_id < b.job_id;
+        return a.op_index < b.op_index;
+    });
+
+    std::vector<int> machines;
+    double cmax = 0.0;
+    for (const auto& row : sorted) {
+        cmax = std::max(cmax, row.end);
+        if (std::find(machines.begin(), machines.end(), row.machine_id) == machines.end()) {
+            machines.push_back(row.machine_id);
+        }
+    }
+    std::sort(machines.begin(), machines.end());
+
+    std::ofstream out(output_path);
+    out << "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
+        << "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+        << "<title>Gantt " << html_escape(instance) << "</title>\n"
+        << "<style>\n"
+        << ":root{color-scheme:light;font-family:Segoe UI,Arial,sans-serif;background:#f6f7f9;color:#151922;}\n"
+        << "body{margin:0;padding:24px;background:#f6f7f9;}\n"
+        << ".wrap{max-width:1280px;margin:0 auto;}\n"
+        << "header{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:18px;}\n"
+        << "h1{font-size:24px;line-height:1.2;margin:0;color:#111827;}\n"
+        << ".meta{font-size:13px;color:#4b5563;text-align:right;}\n"
+        << ".chart{background:#fff;border:1px solid #d8dde6;border-radius:8px;overflow:auto;box-shadow:0 1px 2px rgba(15,23,42,.06);}\n"
+        << ".axis{display:grid;grid-template-columns:86px minmax(760px,1fr);border-bottom:1px solid #e5e7eb;background:#f9fafb;position:sticky;top:0;z-index:2;}\n"
+        << ".axis-label{padding:10px 12px;font-size:12px;font-weight:600;color:#4b5563;border-right:1px solid #e5e7eb;}\n"
+        << ".ticks{position:relative;height:38px;min-width:760px;}\n"
+        << ".tick{position:absolute;top:0;bottom:0;border-left:1px solid #e5e7eb;font-size:11px;color:#64748b;padding-left:5px;}\n"
+        << ".row{display:grid;grid-template-columns:86px minmax(760px,1fr);border-bottom:1px solid #edf0f5;}\n"
+        << ".row:last-child{border-bottom:0;}\n"
+        << ".label{padding:18px 12px;font-size:13px;font-weight:600;color:#334155;border-right:1px solid #e5e7eb;background:#fbfcfe;}\n"
+        << ".track{position:relative;height:58px;min-width:760px;background:linear-gradient(to right,#eef2f7 1px,transparent 1px);background-size:10% 100%;}\n"
+        << ".bar{position:absolute;top:12px;height:34px;border-radius:5px;color:#fff;font-size:12px;line-height:34px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:inset 0 -1px 0 rgba(0,0,0,.18);}\n"
+        << ".bar:hover{filter:brightness(.92);z-index:3;}\n"
+        << ".empty{padding:28px;color:#64748b;}\n"
+        << "</style>\n</head>\n<body>\n<div class=\"wrap\">\n<header>\n"
+        << "<div><h1>Gantt Chart - " << html_escape(instance) << "</h1></div>\n"
+        << "<div class=\"meta\">Cmax: " << std::fixed << std::setprecision(0) << cmax
+        << "<br>Generated: " << html_escape(current_timestamp()) << "</div>\n"
+        << "</header>\n<div class=\"chart\">\n";
+
+    if (sorted.empty() || cmax <= 0.0) {
+        out << "<div class=\"empty\">No operations found.</div>\n";
+    } else {
+        out << "<div class=\"axis\"><div class=\"axis-label\">Machine</div><div class=\"ticks\">";
+        for (int i = 0; i <= 4; ++i) {
+            const double pct = i * 25.0;
+            const double t = cmax * pct / 100.0;
+            out << "<div class=\"tick\" style=\"left:" << std::setprecision(4) << pct << "%\">"
+                << std::fixed << std::setprecision(0) << t << "</div>";
+        }
+        out << "</div></div>\n";
+
+        out << std::fixed << std::setprecision(4);
+        for (int machine_id : machines) {
+            out << "<div class=\"row\"><div class=\"label\">M" << machine_id << "</div><div class=\"track\">";
+            for (const auto& row : sorted) {
+                if (row.machine_id != machine_id) continue;
+                const double left = 100.0 * row.start / cmax;
+                const double width = std::max(0.08, 100.0 * (row.end - row.start) / cmax);
+                std::ostringstream title;
+                title << "Machine " << row.machine_id << " | Job " << row.job_id
+                      << " | Op " << row.op_index << " | Start " << std::fixed << std::setprecision(0)
+                      << row.start << " | End " << row.end << " | Proc " << row.proc_time;
+                out << "<div class=\"bar\" title=\"" << html_escape(title.str()) << "\" style=\"left:"
+                    << left << "%;width:max(2px," << width << "%);background:" << job_color(row.job_id)
+                    << "\">J" << row.job_id << " O" << row.op_index << "</div>";
+            }
+            out << "</div></div>\n";
+        }
+    }
+
+    out << "</div>\n</div>\n</body>\n</html>\n";
+}
+
+void write_convergence_csv(const fs::path& output_path, const std::vector<ConvergenceRow>& rows) {
+    std::ofstream out(output_path);
+    out << "Iteration,IterBest,IterAvg,IterWorst,BestCmax\n";
+    out << std::fixed << std::setprecision(6);
+    for (const auto& row : rows) {
+        out << row.iteration << "," << row.iter_best << "," << row.iter_avg << ","
+            << row.iter_worst << "," << row.best_cmax << "\n";
+    }
+}
+
+struct MethodComparison {
+    std::vector<std::string> methods;
+    std::vector<uint64_t> seeds;
+    std::unordered_map<std::string, std::vector<double>> cmax_by_method;
+};
+
+MethodComparison evaluate_methods(
+    const std::vector<Job>& base_jobs,
+    const std::vector<Machine>& base_machines,
+    const StateFeatures& feats,
+    const std::vector<double>& best_theta,
+    const PSOHH& hh,
+    uint64_t seed,
+    int report_runs,
+    bool use_gt_sgs
+) {
+    MethodComparison result;
+    result.methods = build_rule_names();
+    result.methods.push_back("PSO-HH");
+
+    for (const auto& method : result.methods) {
+        result.cmax_by_method[method] = {};
+    }
+
+    for (int rep = 0; rep < report_runs; ++rep) {
+        const uint64_t seq_base =
+            (seed * 11400714819323198485ULL) ^
+            0xC6BC279692B5C323ULL ^
+            (static_cast<uint64_t>(rep) * 97ULL);
+        result.seeds.push_back(seq_base);
+
+        for (const auto& rule_name : build_rule_names()) {
+            const double cmax = run_single_rule_episode(
+                base_jobs,
+                base_machines,
+                feats,
+                nullptr,
+                rule_name,
+                seq_base,
+                use_gt_sgs
+            );
+            result.cmax_by_method[rule_name].push_back(cmax);
+        }
+
+        Simulation sim(base_jobs, base_machines, build_rules(), feats, nullptr, use_gt_sgs);
+        const SimResult pso_result = sim.run_episode(best_theta, hh, seq_base, 0.0);
+        result.cmax_by_method["PSO-HH"].push_back(pso_result.Cmax);
+    }
+
+    return result;
+}
+
+void write_results_csv(const fs::path& output_path, const MethodComparison& comparison) {
+    std::ofstream out(output_path);
+    out << "Run,Seed";
+    for (const auto& method : comparison.methods) {
+        out << "," << method;
+    }
+    out << "\n";
+
+    out << std::fixed << std::setprecision(6);
+    for (size_t i = 0; i < comparison.seeds.size(); ++i) {
+        out << (i + 1) << "," << comparison.seeds[i];
+        for (const auto& method : comparison.methods) {
+            out << "," << comparison.cmax_by_method.at(method).at(i);
+        }
+        out << "\n";
+    }
+}
+
+void write_summary_csv(const fs::path& output_path, const MethodComparison& comparison) {
+    std::ofstream out(output_path);
+    out << "Method,Best,Mean,Worst,StdDev\n";
+    out << std::fixed << std::setprecision(6);
+    for (const auto& method : comparison.methods) {
+        const Stats stats = compute_stats(comparison.cmax_by_method.at(method));
+        out << method << "," << stats.mn << "," << stats.mean << ","
+            << stats.mx << "," << stats.std << "\n";
+    }
+}
+
+bool write_single_run_reports(
+    const std::string& instance,
+    const std::string& report_dir,
+    const std::vector<ConvergenceRow>& convergence,
+    const MethodComparison& comparison,
+    const GanttLogger& logger
+) {
+    std::error_code ec;
+    const fs::path instance_dir = fs::path(report_dir) / instance;
+    fs::create_directories(instance_dir, ec);
+    if (ec) {
+        std::cerr << "Could not create report directory '" << instance_dir.string()
+                  << "': " << ec.message() << "\n";
+        return false;
+    }
+
+    const fs::path convergence_path = instance_dir / ("convergence_" + instance + ".csv");
+    const fs::path results_path = instance_dir / ("results_" + instance + ".csv");
+    const fs::path summary_path = instance_dir / ("summary_" + instance + ".csv");
+    const fs::path gantt_csv_path = instance_dir / ("gantt_" + instance + ".csv");
+    const fs::path gantt_html_path = instance_dir / ("gantt_" + instance + ".html");
+
+    write_convergence_csv(convergence_path, convergence);
+    write_results_csv(results_path, comparison);
+    write_summary_csv(summary_path, comparison);
+
+    GanttLogger report_logger(gantt_csv_path.string());
+    report_logger.rows = logger.rows;
+    report_logger.write_sorted();
+    write_gantt_html(gantt_html_path, instance, logger.rows);
+    return true;
 }
 
 void run_experiments(const std::string& orlib_path) {
@@ -197,6 +462,9 @@ int main(int argc, char** argv) {
     int ls_iters = 0;
     double ls_step = 0.25;
     bool train_deterministic = false;
+    bool write_reports = true;
+    int report_runs = 30;
+    std::string report_dir = "reports";
 
     while (ai < argc) {
         const std::string key = argv[ai++];
@@ -308,13 +576,28 @@ int main(int argc, char** argv) {
             }
         } else if (key == "--traindet") {
             train_deterministic = true;
+        } else if (key == "--no-report") {
+            write_reports = false;
+        } else if (key == "--report-runs") {
+            const std::string value = need(key);
+            if (!parse_int(value, report_runs) || report_runs < 1) {
+                std::cerr << "Bad --report-runs value\n";
+                return 1;
+            }
+        } else if (key == "--report-dir") {
+            report_dir = need(key);
+            if (report_dir.empty()) {
+                std::cerr << "Bad --report-dir value\n";
+                return 1;
+            }
         } else if (key == "--help" || key == "-h") {
             std::cout
                 << "Usage: xsim.exe [instance] [--eps0 <v>] [--epsmin <v>] [--iters <n>] "
                 << "[--swarm <n>] [--seed <n>] [--evalk <n>] [--finalk <n>] [--fitavg] "
                 << "[--sgs gt|event] [--lsiters <n>] [--lsstep <v>] [--traindet] "
                 << "[--slsiters <n>] [--tsiters <n>] [--tabu <tenure>] "
-                << "[--tsmove swap|insert|mixed]\n";
+                << "[--tsmove swap|insert|mixed] [--no-report] [--report-runs <n>] "
+                << "[--report-dir <path>]\n";
             return 0;
         } else {
             std::cerr << "Unknown option: " << key << "\n";
@@ -348,6 +631,7 @@ int main(int argc, char** argv) {
 
     const int K = static_cast<int>(build_rule_names().size());
     PSOHH hh(p, K, rng_pso);
+    std::vector<ConvergenceRow> convergence_rows;
 
     for (int iter = 0; iter < p.iters; ++iter) {
         const double frac_eps = (p.iters <= 1)
@@ -390,10 +674,19 @@ int main(int argc, char** argv) {
             iter_sum += fit;
         }
 
+        const double iter_avg = iter_sum / p.swarm_size;
+        convergence_rows.push_back(ConvergenceRow{
+            iter + 1,
+            iter_best,
+            iter_avg,
+            iter_worst,
+            hh.gbest_fit
+        });
+
         hh.move();
         std::cout << "iter=" << iter
             << "  iter_best=" << static_cast<long long>(iter_best)
-            << "  iter_avg=" << (iter_sum / p.swarm_size)
+            << "  iter_avg=" << iter_avg
             << "  iter_worst=" << static_cast<long long>(iter_worst)
             << "  gbest_Cmax=" << hh.gbest_fit
             << "\n";
@@ -507,6 +800,22 @@ int main(int argc, char** argv) {
         }
 
         logger.write_sorted();
+    }
+
+    if (write_reports) {
+        const MethodComparison comparison = evaluate_methods(
+            base_jobs,
+            base_machines,
+            feats,
+            best_theta,
+            hh,
+            seed,
+            report_runs,
+            use_gt_sgs
+        );
+        if (write_single_run_reports(instance, report_dir, convergence_rows, comparison, logger)) {
+            std::cout << "Reports written to " << (fs::path(report_dir) / instance).string() << "\n";
+        }
     }
 
     std::cout << "Done. Best Cmax=" << static_cast<long long>(final_res.Cmax)

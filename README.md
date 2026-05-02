@@ -123,6 +123,11 @@ Yardim ekrani:
 Tek bir instance kosusundan sonra genellikle su dosya uretilir:
 
 - `gantt_<instance>.csv`: Son elde edilen cizelgenin makine bazli zaman tablosu.
+- `reports/<instance>/results_<instance>.csv`: Tekil instance icin PSO-HH ve kurallar arasi tekrar bazli Cmax karsilastirmasi.
+- `reports/<instance>/summary_<instance>.csv`: Tekil instance karsilastirmasinin best, mean, worst ve std ozetleri.
+- `reports/<instance>/convergence_<instance>.csv`: PSO iterasyonlarindaki iter_best, iter_avg, iter_worst ve BestCmax degerleri.
+- `reports/<instance>/gantt_<instance>.csv`: Gantt CSV dosyasinin rapor klasorundeki kopyasi.
+- `reports/<instance>/gantt_<instance>.html`: Tarayicida acilabilen Gantt chart gorunumu.
 
 `experiments` modu calistiginda su dosyalar yazilir:
 
@@ -160,6 +165,9 @@ Tek bir instance kosusundan sonra genellikle su dosya uretilir:
 - `--finalk <n>`: Egitim bittikten sonra en iyi agirlik vektorunun final degerlendirmesinde kac tekrar denenecagini belirler. Varsayilan: `200`.
 - `--fitavg`: Varsayilan davranis olan "tekrarlardan en iyi sonucu fitness kabul et" yerine, `evalk` tekrarlarinin ortalamasini fitness olarak kullanir.
 - `--traindet`: Egitim sirasinda epsilon'u `0` kabul ederek daha deterministik degerlendirme yapar. Ozellikle rastgeleligin etkisini azaltmak istediginizde kullanislidir.
+- `--no-report`: Tekil instance kosusunda otomatik `reports/<instance>/` raporlarini kapatir.
+- `--report-runs <n>`: Tekil instance raporundaki yontem karsilastirmasi icin tekrar sayisini belirler. Varsayilan: `30`.
+- `--report-dir <path>`: Tekil instance raporlarinin yazilacagi kok klasoru belirler. Varsayilan: `reports`.
 
 ### Schedule Generation ve Simulasyon Flagleri
 
@@ -203,6 +211,12 @@ Toplu deney modu:
 
 ```powershell
 .\djssp_pso_hh.exe experiments
+```
+
+Mevcut bir Gantt CSV dosyasindan HTML chart uretmek icin:
+
+```powershell
+python tools\gantt_chart.py reports\la01\gantt_la01.csv --output reports\la01\gantt_la01.html
 ```
 
 ## Notlar

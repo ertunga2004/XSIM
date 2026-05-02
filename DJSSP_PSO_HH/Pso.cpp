@@ -102,7 +102,8 @@ double run_single_rule_episode(
     const StateFeatures& feats,
     GanttLogger* logger,
     const std::string& rule_name,
-    uint64_t seq_base
+    uint64_t seq_base,
+    bool use_gt
 ) {
     auto rule = create_rule_by_name(rule_name);
     if (rule == nullptr) {
@@ -121,7 +122,7 @@ double run_single_rule_episode(
     std::vector<double> weights(dummy_hh.dimension(), 0.0);
     weights[0] = 1.0;
 
-    Simulation sim(base_jobs, base_machines, std::move(rules), feats, logger, true);
+    Simulation sim(base_jobs, base_machines, std::move(rules), feats, logger, use_gt);
     const SimResult result = sim.run_episode(weights, dummy_hh, seq_base, 0.0);
     return result.Cmax;
 }

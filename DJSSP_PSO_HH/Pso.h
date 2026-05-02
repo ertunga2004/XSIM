@@ -30,7 +30,8 @@ double run_single_rule_episode(
     const StateFeatures& feats,
     GanttLogger* logger,
     const std::string& rule_name,
-    uint64_t seq_base
+    uint64_t seq_base,
+    bool use_gt = true
 );
 
 double run_psohh_scenario(

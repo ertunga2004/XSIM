@@ -13,3 +13,4 @@ hunt_ft06/_work/
 hunts/*/logs/
 hunts/*/results/
 hunts/*/gantt_*.csv
+reports/
