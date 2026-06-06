@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "run": {
+    "name": "ft06_bad_path",
+    "seed": 1,
+    "output_root": "runs",
+    "write_reports": false
+  },
+  "instance": {
+    "source": "orlib",
+    "name": "ft06",
+    "path": "data/does_not_exist.txt"
+  },
+  "objective": "cmax",
+  "solver": {
+    "method": "pso_hh",
+    "sgs": "gt",
+    "iters": 1,
+    "swarm": 2,
+    "evalk": 1,
+    "finalk": 1,
+    "eps0": 0.25,
+    "epsmin": 0.05,
+    "fitavg": false,
+    "traindet": false
+  },
+  "improvement": {
+    "enabled": false,
+    "type": null,
+    "slsiters": 0,
+    "tsiters": 0,
+    "tabu": 10,
+    "tsmove": "mixed"
+  },
+  "outputs": {
+    "write_result_json": true,
+    "write_schedule_csv": true,
+    "write_metadata_json": true,
+    "write_convergence_csv": true,
+    "write_gantt_html": false
+  }
+}

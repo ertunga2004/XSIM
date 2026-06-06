@@ -1,7 +1,11 @@
 #pragma once
 
+<<<<<<< HEAD
 #include "Job.h"
 #include "Machine.h"
+=======
+#include "FeatureVectorBuilder.h"
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
 namespace djssp {
 
@@ -9,12 +13,15 @@ struct StateVector {
     std::vector<double> x;
 };
 
+<<<<<<< HEAD
 struct FeatureConfig {
     int q_max = 50;
     int wip_max = 50;
     double rw_scale = 200.0;
 };
 
+=======
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 inline double remaining_work(const Job& job) {
     double total = 0.0;
     for (int k = job.next_op; k < static_cast<int>(job.ops.size()); ++k) {
@@ -25,8 +32,17 @@ inline double remaining_work(const Job& job) {
 
 struct StateFeatures {
     FeatureConfig cfg;
+<<<<<<< HEAD
 
     explicit StateFeatures(FeatureConfig config) : cfg(config) {}
+=======
+    FeatureVectorBuilder builder;
+
+    explicit StateFeatures(FeatureConfig config) : cfg(config), builder(config) {}
+
+    StateFeatures(FeatureConfig config, std::vector<std::string> feature_names)
+        : cfg(config), builder(config, std::move(feature_names)) {}
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
     static double utilization(const std::vector<Machine>& machines, double t) {
         if (machines.empty()) {
@@ -48,6 +64,7 @@ struct StateFeatures {
         const Machine& focus_m,
         double t
     ) const {
+<<<<<<< HEAD
         const double U = utilization(machines, t);
         const double Qm = std::min(
             1.0,
@@ -79,6 +96,21 @@ struct StateFeatures {
         state.x = {U, Qm, WIP, RWavg};
         return state;
     }
+=======
+        const FeatureVector feature_vector = builder.build(machines, jobs, focus_m, t);
+        StateVector state;
+        state.x = feature_vector.values;
+        return state;
+    }
+
+    const std::vector<std::string>& feature_names() const {
+        return builder.feature_names();
+    }
+
+    int feature_count() const {
+        return builder.feature_count();
+    }
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 };
 
 }  // namespace djssp

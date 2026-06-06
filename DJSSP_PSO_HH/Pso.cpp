@@ -1,5 +1,11 @@
 #include "Pso.h"
 
+<<<<<<< HEAD
+=======
+#include "RuleRegistry.h"
+#include "ScheduleGenerator.h"
+
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 namespace djssp {
 
 PSOHH::PSOHH(PSOParams params, int rule_count, RNG& rng_ref, int feature_count)
@@ -105,25 +111,53 @@ double run_single_rule_episode(
     uint64_t seq_base,
     bool use_gt
 ) {
+<<<<<<< HEAD
     auto rule = create_rule_by_name(rule_name);
+=======
+    IRule* rule = get_rule_by_name(rule_name);
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     if (rule == nullptr) {
         return 1e300;
     }
 
+<<<<<<< HEAD
     std::vector<std::unique_ptr<Rule>> rules;
     rules.emplace_back(std::move(rule));
+=======
+    std::vector<IRule*> rules;
+    rules.push_back(rule);
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
     RNG dummy_rng(1);
     PSOParams params;
     params.swarm_size = 1;
     params.iters = 1;
+<<<<<<< HEAD
     PSOHH dummy_hh(params, 1, dummy_rng);
+=======
+    PSOHH dummy_hh(params, 1, dummy_rng, feats.feature_count());
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
     std::vector<double> weights(dummy_hh.dimension(), 0.0);
     weights[0] = 1.0;
 
+<<<<<<< HEAD
     Simulation sim(base_jobs, base_machines, std::move(rules), feats, logger, use_gt);
     const SimResult result = sim.run_episode(weights, dummy_hh, seq_base, 0.0);
+=======
+    const auto generator = create_schedule_generator(use_gt);
+    const SimResult result = generator->generate(
+        base_jobs,
+        base_machines,
+        feats,
+        rules,
+        logger,
+        weights,
+        dummy_hh,
+        seq_base,
+        0.0
+    );
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     return result.Cmax;
 }
 
@@ -142,7 +176,11 @@ double run_psohh_scenario(
     params.swarm_size = swarm_size;
 
     const int K = static_cast<int>(build_rule_names().size());
+<<<<<<< HEAD
     PSOHH hh(params, K, rng_pso);
+=======
+    PSOHH hh(params, K, rng_pso, feats.feature_count());
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
     for (int iter = 0; iter < params.iters; ++iter) {
         const double frac = (params.iters <= 1)
@@ -151,11 +189,29 @@ double run_psohh_scenario(
         const double current_eps = std::max(params.eps_min, params.eps0 * frac);
 
         for (int i = 0; i < params.swarm_size; ++i) {
+<<<<<<< HEAD
             Simulation sim(base_jobs, base_machines, build_rules(), feats, logger, true);
             const auto& weights = hh.particle_weights(i);
             const uint64_t stream = seq_base + static_cast<uint64_t>(iter) * 100000ULL +
                 static_cast<uint64_t>(i) * 1000ULL;
             const SimResult result = sim.run_episode(weights, hh, stream, current_eps);
+=======
+            const auto generator = create_schedule_generator(true);
+            const auto& weights = hh.particle_weights(i);
+            const uint64_t stream = seq_base + static_cast<uint64_t>(iter) * 100000ULL +
+                static_cast<uint64_t>(i) * 1000ULL;
+            const SimResult result = generator->generate(
+                base_jobs,
+                base_machines,
+                feats,
+                build_rules(),
+                logger,
+                weights,
+                hh,
+                stream,
+                current_eps
+            );
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
             hh.update_fitness(i, result.Cmax);
         }
 

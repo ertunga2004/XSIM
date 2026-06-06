@@ -32,3 +32,9 @@ yedek/
 xsim.exe
 xsimv2.exe
 Xsimv36.cpp
+
+build/
+runs/
+reports/
+gantt_*.csv
+*.log

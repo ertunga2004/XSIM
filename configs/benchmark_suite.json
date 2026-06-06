@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "suite_name": "smoke_suite",
+  "runs": [
+    "configs/smoke/ft06_smoke.json",
+    "configs/smoke/ft06_spt.json",
+    "configs/smoke/ft06_fifo_mwkr.json"
+  ]
+}

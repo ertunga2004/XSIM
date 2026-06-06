@@ -6,6 +6,7 @@ namespace djssp {
 
 namespace {
 
+<<<<<<< HEAD
 class RuleSPT : public Rule {
 public:
     std::string name() const override { return "SPT"; }
@@ -132,6 +133,8 @@ public:
     }
 };
 
+=======
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 void erase_ptr(std::deque<Operation*>& dq, Operation* op) {
     for (auto it = dq.begin(); it != dq.end(); ++it) {
         if (*it == op) {
@@ -650,6 +653,7 @@ void GanttLogger::write_sorted() const {
     }
 }
 
+<<<<<<< HEAD
 std::vector<std::string> build_rule_names() {
     return {"SPT", "LPT", "MWKR", "MOR", "FIFO", "SIO", "PT+WINQ"};
 }
@@ -691,6 +695,12 @@ Simulation::Simulation(
     std::vector<Job> jobs,
     std::vector<Machine> machines,
     std::vector<std::unique_ptr<Rule>> rules,
+=======
+Simulation::Simulation(
+    std::vector<Job> jobs,
+    std::vector<Machine> machines,
+    std::vector<IRule*> rules,
+>>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     StateFeatures feats,
     GanttLogger* logger,
     bool use_gt
