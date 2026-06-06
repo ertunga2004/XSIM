@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-#include "InstanceGenerator.h"
-#include "Pso.h"
-=======
 #include "BatchConfigLoader.h"
 #include "BatchRunner.h"
 #include "ConfigLoader.h"
@@ -12,7 +8,6 @@
 #include "Pso.h"
 #include "ResultWriter.h"
 #include "ScheduleGenerator.h"
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
 #include <chrono>
 #include <ctime>
@@ -207,10 +202,7 @@ MethodComparison evaluate_methods(
     const StateFeatures& feats,
     const std::vector<double>& best_theta,
     const PSOHH& hh,
-<<<<<<< HEAD
-=======
     const std::vector<IRule*>& active_rules,
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     uint64_t seed,
     int report_runs,
     bool use_gt_sgs
@@ -243,10 +235,6 @@ MethodComparison evaluate_methods(
             result.cmax_by_method[rule_name].push_back(cmax);
         }
 
-<<<<<<< HEAD
-        Simulation sim(base_jobs, base_machines, build_rules(), feats, nullptr, use_gt_sgs);
-        const SimResult pso_result = sim.run_episode(best_theta, hh, seq_base, 0.0);
-=======
         const auto generator = create_schedule_generator(use_gt_sgs);
         const SimResult pso_result = generator->generate(
             base_jobs,
@@ -259,7 +247,6 @@ MethodComparison evaluate_methods(
             seq_base,
             0.0
         );
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
         result.cmax_by_method["PSO-HH"].push_back(pso_result.Cmax);
     }
 
@@ -375,14 +362,6 @@ void run_experiments(const std::string& orlib_path) {
                 RNG rng_scn(1000ULL * static_cast<uint64_t>(rep) + 17ULL);
                 RNG rng_pso(9000ULL * static_cast<uint64_t>(rep) + 99ULL);
 
-<<<<<<< HEAD
-                std::vector<Job> jobs;
-                std::string err;
-                if (!load_orlib_jobshop1_instance(orlib_path, instance, jobs, n_machines, &err)) {
-                    throw std::runtime_error("[ORLIB] " + err);
-                }
-
-=======
                 Instance loaded_instance;
                 std::string err;
                 const InstanceLoader instance_loader;
@@ -392,7 +371,6 @@ void run_experiments(const std::string& orlib_path) {
 
                 std::vector<Job> jobs = std::move(loaded_instance.jobs);
                 n_machines = loaded_instance.machine_count;
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
                 n_jobs = static_cast<int>(jobs.size());
                 assign_release_times_poisson(jobs, rng_scn, lambda);
                 const auto machines = build_machines(n_machines);
@@ -461,15 +439,6 @@ int main(int argc, char** argv) {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-<<<<<<< HEAD
-    const std::string orlib_path = "data/jobshop1.txt";
-
-    if (argc >= 2 && std::string(argv[1]) == "experiments") {
-        run_experiments(orlib_path);
-        return 0;
-    }
-
-=======
     const std::string default_orlib_path = "data/jobshop1.txt";
 
     if (argc >= 2 && std::string(argv[1]) == "experiments") {
@@ -530,7 +499,6 @@ int main(int argc, char** argv) {
         }
     }
 
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     std::string instance = "ft06";
     int ai = 1;
     if (ai < argc && std::string(argv[ai]).rfind("--", 0) != 0) {
@@ -572,8 +540,6 @@ int main(int argc, char** argv) {
     bool write_reports = true;
     int report_runs = 30;
     std::string report_dir = "reports";
-<<<<<<< HEAD
-=======
     std::string instance_path = default_orlib_path;
     std::string output_root = "runs";
     XSimConfig loaded_config;
@@ -619,7 +585,6 @@ int main(int argc, char** argv) {
             tsmove_mode = 2;
         }
     }
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
     while (ai < argc) {
         const std::string key = argv[ai++];
@@ -631,13 +596,9 @@ int main(int argc, char** argv) {
             return std::string(argv[ai++]);
         };
 
-<<<<<<< HEAD
-        if (key == "--eps0") {
-=======
         if (key == "--config") {
             (void)need(key);
         } else if (key == "--eps0") {
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
             const std::string value = need(key);
             if (!parse_double(value, p.eps0)) {
                 std::cerr << "Bad --eps0 value\n";
@@ -758,11 +719,7 @@ int main(int argc, char** argv) {
                 << "[--sgs gt|event] [--lsiters <n>] [--lsstep <v>] [--traindet] "
                 << "[--slsiters <n>] [--tsiters <n>] [--tabu <tenure>] "
                 << "[--tsmove swap|insert|mixed] [--no-report] [--report-runs <n>] "
-<<<<<<< HEAD
-                << "[--report-dir <path>]\n";
-=======
                 << "[--report-dir <path>] [--config <path>] [--batch <path>]\n";
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
             return 0;
         } else {
             std::cerr << "Unknown option: " << key << "\n";
@@ -771,20 +728,6 @@ int main(int argc, char** argv) {
         }
     }
 
-<<<<<<< HEAD
-    std::vector<Job> base_jobs;
-    int n_machines = 0;
-    std::string err;
-    if (!load_orlib_jobshop1_instance(orlib_path, instance, base_jobs, n_machines, &err)) {
-        std::cerr << "[ORLIB] " << err << "\n";
-        std::cerr << "Make sure '" << orlib_path << "' exists\n";
-        return 1;
-    }
-
-    const int n_jobs = static_cast<int>(base_jobs.size());
-    const auto base_machines = build_machines(n_machines);
-
-=======
     const LocalTimestamp run_timestamp = make_local_timestamp();
 
     auto tsmove_name = [](int mode) {
@@ -934,29 +877,19 @@ int main(int argc, char** argv) {
     run_context.run_id = make_run_id(run_timestamp, instance, seed, config_hash);
     run_context.output_dir = fs::path(output_root) / run_context.run_id;
 
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     FeatureConfig fcfg;
     fcfg.q_max = 30;
     fcfg.wip_max = n_jobs;
     fcfg.rw_scale = 200.0;
-<<<<<<< HEAD
-    StateFeatures feats(fcfg);
-=======
     StateFeatures feats(fcfg, active_feature_names);
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
     RNG rng_pso(seed);
     p.w_inertia = 0.7;
     p.c1 = 1.4;
     p.c2 = 1.4;
 
-<<<<<<< HEAD
-    const int K = static_cast<int>(build_rule_names().size());
-    PSOHH hh(p, K, rng_pso);
-=======
     const int K = static_cast<int>(active_rules.size());
     PSOHH hh(p, K, rng_pso, feats.feature_count());
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     std::vector<ConvergenceRow> convergence_rows;
 
     for (int iter = 0; iter < p.iters; ++iter) {
@@ -971,11 +904,7 @@ int main(int argc, char** argv) {
         double iter_sum = 0.0;
 
         for (int i = 0; i < p.swarm_size; ++i) {
-<<<<<<< HEAD
-            Simulation sim(base_jobs, base_machines, build_rules(), feats, nullptr, use_gt_sgs);
-=======
             const auto generator = create_schedule_generator(use_gt_sgs);
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
             const auto& weights = hh.particle_weights(i);
 
             double fit = 1e300;
@@ -986,9 +915,6 @@ int main(int argc, char** argv) {
                     (static_cast<uint64_t>(iter) * 100000ULL) ^
                     (static_cast<uint64_t>(i) * 1000ULL) ^
                     (static_cast<uint64_t>(rep) * 17ULL);
-<<<<<<< HEAD
-                const SimResult result = sim.run_episode(weights, hh, seq_base, eval_eps);
-=======
                 const SimResult result = generator->generate(
                     base_jobs,
                     base_machines,
@@ -1000,7 +926,6 @@ int main(int argc, char** argv) {
                     seq_base,
                     eval_eps
                 );
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
                 if (fitness_take_min) {
                     fit = std::min(fit, result.Cmax);
                 } else {
@@ -1037,11 +962,7 @@ int main(int argc, char** argv) {
     }
 
     auto eval_theta = [&](const std::vector<double>& theta, uint64_t seed_base) {
-<<<<<<< HEAD
-        Simulation sim(base_jobs, base_machines, build_rules(), feats, nullptr, use_gt_sgs);
-=======
         const auto generator = create_schedule_generator(use_gt_sgs);
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
         double fit = 1e300;
         double sum = 0.0;
 
@@ -1050,9 +971,6 @@ int main(int argc, char** argv) {
                 (seed_base * 2654435761ULL) ^
                 (static_cast<uint64_t>(rep) * 97ULL) ^
                 0x9E3779B97F4A7C15ULL;
-<<<<<<< HEAD
-            const SimResult result = sim.run_episode(theta, hh, seq_base, 0.0);
-=======
             const SimResult result = generator->generate(
                 base_jobs,
                 base_machines,
@@ -1064,7 +982,6 @@ int main(int argc, char** argv) {
                 seq_base,
                 0.0
             );
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
             if (fitness_take_min) {
                 fit = std::min(fit, result.Cmax);
             } else {
@@ -1123,19 +1040,12 @@ int main(int argc, char** argv) {
     double best_final = 1e300;
     uint64_t best_seq = 999000000ULL;
     {
-<<<<<<< HEAD
-        Simulation sim(base_jobs, base_machines, build_rules(), feats, nullptr, use_gt_sgs);
-=======
         const auto generator = create_schedule_generator(use_gt_sgs);
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
         for (int rep = 0; rep < final_k; ++rep) {
             const uint64_t seq_base =
                 (seed * 2654435761ULL) ^
                 999000000ULL ^
                 (static_cast<uint64_t>(rep) * 97ULL);
-<<<<<<< HEAD
-            const SimResult result = sim.run_episode(best_theta, hh, seq_base, 0.0);
-=======
             const SimResult result = generator->generate(
                 base_jobs,
                 base_machines,
@@ -1147,7 +1057,6 @@ int main(int argc, char** argv) {
                 seq_base,
                 0.0
             );
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
             if (result.Cmax < best_final) {
                 best_final = result.Cmax;
                 best_seq = seq_base;
@@ -1158,10 +1067,6 @@ int main(int argc, char** argv) {
     GanttLogger logger("gantt_" + instance + ".csv");
     SimResult final_res;
     {
-<<<<<<< HEAD
-        Simulation sim(base_jobs, base_machines, build_rules(), feats, &logger, use_gt_sgs);
-        final_res = sim.run_episode(best_theta, hh, best_seq, 0.0);
-=======
         const auto generator = create_schedule_generator(use_gt_sgs);
         final_res = generator->generate(
             base_jobs,
@@ -1174,7 +1079,6 @@ int main(int argc, char** argv) {
             best_seq,
             0.0
         );
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
 
         if (sls_iters > 0 || ts_iters > 0) {
             double new_cmax = final_res.Cmax;
@@ -1204,10 +1108,7 @@ int main(int argc, char** argv) {
             feats,
             best_theta,
             hh,
-<<<<<<< HEAD
-=======
             active_rules,
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
             seed,
             report_runs,
             use_gt_sgs
@@ -1217,17 +1118,6 @@ int main(int argc, char** argv) {
         }
     }
 
-<<<<<<< HEAD
-    std::cout << "Done. Best Cmax=" << static_cast<long long>(final_res.Cmax)
-        << " (train_best=" << static_cast<long long>(hh.gbest_fit)
-        << ", det_screen_best=" << static_cast<long long>(best_theta_fit)
-        << ", best_seq_Cmax=" << static_cast<long long>(best_final)
-        << ", best_seq=" << static_cast<unsigned long long>(best_seq) << ")\n";
-
-    const auto rule_names = build_rule_names();
-    for (size_t i = 0; i < rule_names.size(); ++i) {
-        std::cout << rule_names[i] << (i + 1 == rule_names.size() ? '\n' : ' ');
-=======
     std::ostringstream best_cmax_line;
     best_cmax_line << "Done. Best Cmax=" << static_cast<long long>(final_res.Cmax)
         << " (train_best=" << static_cast<long long>(hh.gbest_fit)
@@ -1271,7 +1161,6 @@ int main(int argc, char** argv) {
 
     for (size_t i = 0; i < active_rule_names.size(); ++i) {
         std::cout << active_rule_names[i] << (i + 1 == active_rule_names.size() ? '\n' : ' ');
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)
     }
 
     std::cout << "Gantt written to gantt_" << instance << ".csv\n";

@@ -1,0 +1,6 @@
+﻿trial_id,instance,seed,sgs,iters,swarm,evalk,finalk,eps0,epsmin,fitavg,traindet,tsiters,tabu,tsmove,status,feasible,cmax,runtime_sec,run_id,run_dir,parse_source,log_file
+trial_0001,abz7,11,gt,1000,50,3,50000,0,0,True,True,30000,18,mixed,success,True,684,56,846194,,"",legacy_stdout,"C:\Users\ertun\Documents\.CODE\codex\XSIM\.\search_results\20260607_003409_abz7_iterative_search\logs\trial_0001.log"
+trial_0002,abz7,11,gt,1000,50,3,50000,0,0,True,True,30000,20,mixed,success,True,674,53,637009,,"",legacy_stdout,"C:\Users\ertun\Documents\.CODE\codex\XSIM\.\search_results\20260607_003409_abz7_iterative_search\logs\trial_0002.log"
+trial_0003,abz7,11,gt,1000,50,3,50000,0,0,True,True,60000,18,mixed,success,True,680,77,012821,,"",legacy_stdout,"C:\Users\ertun\Documents\.CODE\codex\XSIM\.\search_results\20260607_003409_abz7_iterative_search\logs\trial_0003.log"
+trial_0004,abz7,11,gt,1000,50,3,50000,0,0,True,True,60000,20,mixed,success,True,669,79,348556,,"",legacy_stdout,"C:\Users\ertun\Documents\.CODE\codex\XSIM\.\search_results\20260607_003409_abz7_iterative_search\logs\trial_0004.log"
+trial_0005,abz7,11,gt,1000,50,3,200000,0,0,True,True,30000,18,mixed,success,True,684,75,128793,,"",legacy_stdout,"C:\Users\ertun\Documents\.CODE\codex\XSIM\.\search_results\20260607_003409_abz7_iterative_search\logs\trial_0005.log"

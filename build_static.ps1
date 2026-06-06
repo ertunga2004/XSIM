@@ -1,18 +1,5 @@
 $ErrorActionPreference = "Stop"
 
-<<<<<<< HEAD
-$compiler = "C:\msys64\ucrt64\bin\g++.exe"
-if (-not (Test-Path $compiler)) {
-    throw "Compiler not found: $compiler"
-}
-
-& $compiler -std=c++17 -O2 -static -static-libgcc -static-libstdc++ -I DJSSP_PSO_HH `
-  DJSSP_PSO_HH/main.cpp `
-  DJSSP_PSO_HH/InstanceGenerator.cpp `
-  DJSSP_PSO_HH/Simulation.cpp `
-  DJSSP_PSO_HH/Pso.cpp `
-  -o djssp_pso_hh.exe
-=======
 function Find-CMake {
     $cmd = Get-Command cmake -ErrorAction SilentlyContinue
     if ($cmd) {
@@ -95,4 +82,3 @@ if ($cmake) {
 } else {
     Invoke-LegacyStaticGccBuild
 }
->>>>>>> e2a2af7 (Checkpoint: P0-P3 refactor completed)

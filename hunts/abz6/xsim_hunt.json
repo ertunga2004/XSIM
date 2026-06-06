@@ -1,0 +1,6 @@
+{
+  "instance_name": "abz6",
+  "package_type": "standalone_hunt",
+  "xsim_expected_version": "optional",
+  "run_mode": "mini_hunt"
+}

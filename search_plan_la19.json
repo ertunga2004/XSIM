@@ -1,0 +1,21 @@
+{
+  "exe": ".\\djssp_pso_hh.exe",
+  "instance": "la19",
+  "runs_root": ".\\runs",
+  "search_root": ".\\search_results",
+  "seeds": [111, 222, 333],
+  "grid": {
+    "sgs": ["gt"],
+    "iters": [200, 500],
+    "swarm": [30, 50],
+    "evalk": [3],
+    "finalk": [2000, 5000],
+    "eps0": [0.0],
+    "epsmin": [0.0],
+    "fitavg": [true],
+    "traindet": [true],
+    "tsiters": [0],
+    "tabu": [10],
+    "tsmove": ["mixed"]
+  }
+}

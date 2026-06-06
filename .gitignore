@@ -12,6 +12,7 @@ hunt_ft06/best_*.csv
 hunt_ft06/_work/
 hunts/*/logs/
 hunts/*/results/
+hunts/*/runs/
 hunts/*/gantt_*.csv
 reports/
 
