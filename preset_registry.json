@@ -1,0 +1,381 @@
+{
+  "schema_version": "1.0",
+  "project": "XSIM",
+  "description": "Machine-readable preset registry for validation/final pipelines. Generated from candidate_presets_v1.md and current pilot findings.",
+  "presets": [
+    {
+      "preset_id": "PRESET_FT06_FAST_GT",
+      "instance_scope": [
+        "ft06"
+      ],
+      "preset_type": "fast-good",
+      "status": "candidate",
+      "rationale": "Small-instance fast optimum candidate from overnight search region.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 50,
+        "swarm": 20,
+        "evalk": 1,
+        "finalk": 50,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 0,
+        "tabu": 10,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 55,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 55,
+        "runtime_sec": null,
+        "source": "pilot/night runs"
+      },
+      "notes": "Use as small sanity-check and quick regression test preset."
+    },
+    {
+      "preset_id": "PRESET_FT06_TABU_HISTORICAL",
+      "instance_scope": [
+        "ft06"
+      ],
+      "preset_type": "historical-strong",
+      "status": "candidate",
+      "rationale": "Historical optimum-matching tabu-assisted reference preset.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 8,
+        "swarm": 10,
+        "evalk": 1,
+        "finalk": 50,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 30,
+        "tabu": 5,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 55,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 55,
+        "runtime_sec": null,
+        "source": "historical report"
+      },
+      "notes": "Historical small-instance reference."
+    },
+    {
+      "preset_id": "PRESET_LA19_TABU_STRONG_HISTORICAL",
+      "instance_scope": [
+        "la19"
+      ],
+      "preset_type": "historical-strong",
+      "status": "priority-candidate",
+      "rationale": "Strongest historical la19 result; should be revalidated under frozen protocol.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 2000,
+        "swarm": 50,
+        "evalk": 3,
+        "finalk": 50000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 120000,
+        "tabu": 16,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 842,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 842,
+        "runtime_sec": null,
+        "source": "historical report"
+      },
+      "notes": "Critical return-point preset for la19."
+    },
+    {
+      "preset_id": "PRESET_LA19_FAST_REPRODUCIBLE",
+      "instance_scope": [
+        "la19"
+      ],
+      "preset_type": "fast-reproducible",
+      "status": "candidate",
+      "rationale": "Modern-output validated and reproducible fast preset.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 200,
+        "swarm": 30,
+        "evalk": 3,
+        "finalk": 2000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 0,
+        "tabu": 10,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 842,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 928,
+        "runtime_sec": 0.87488,
+        "source": "validated single run"
+      },
+      "notes": "Fast and reproducible challenger; weaker than historical best but operationally convenient."
+    },
+    {
+      "preset_id": "PRESET_ABZ7_BALANCED_NIGHT",
+      "instance_scope": [
+        "abz7"
+      ],
+      "preset_type": "balanced-night-best",
+      "status": "priority-candidate",
+      "rationale": "Night-search best quality/time trade-off with swarm=100.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 1000,
+        "swarm": 100,
+        "evalk": 3,
+        "finalk": 50000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 30000,
+        "tabu": 18,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 656,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 681,
+        "runtime_sec": 101.276768,
+        "source": "night search"
+      },
+      "notes": "Use as balanced challenger; in pilot, swarm mattered more than larger iters."
+    },
+    {
+      "preset_id": "PRESET_ABZ7_LONG_TABU_HISTORICAL",
+      "instance_scope": [
+        "abz7"
+      ],
+      "preset_type": "historical-strong",
+      "status": "priority-candidate",
+      "rationale": "Historically stronger quality than the shorter-tabu night preset.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 2000,
+        "swarm": 100,
+        "evalk": 3,
+        "finalk": 50000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 60000,
+        "tabu": 18,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 656,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 667,
+        "runtime_sec": null,
+        "source": "historical report"
+      },
+      "notes": "Primary revalidation target for abz7."
+    },
+    {
+      "preset_id": "PRESET_ORB01_BALANCED_NIGHT",
+      "instance_scope": [
+        "orb01"
+      ],
+      "preset_type": "balanced-night-best",
+      "status": "priority-candidate",
+      "rationale": "Night-search best quality/time trade-off with swarm=100.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 1000,
+        "swarm": 100,
+        "evalk": 3,
+        "finalk": 50000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 30000,
+        "tabu": 20,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 1059,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 1084,
+        "runtime_sec": 19.840979,
+        "source": "night search"
+      },
+      "notes": "Use as balanced challenger for orb01."
+    },
+    {
+      "preset_id": "PRESET_ORB01_LONG_TABU_HISTORICAL",
+      "instance_scope": [
+        "orb01"
+      ],
+      "preset_type": "historical-strong",
+      "status": "priority-candidate",
+      "rationale": "Historically stronger quality than the shorter-tabu night preset.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 2000,
+        "swarm": 100,
+        "evalk": 3,
+        "finalk": 50000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 60000,
+        "tabu": 20,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 1059,
+        "reference_type": "optimum"
+      },
+      "observed": {
+        "best_cmax": 1064,
+        "runtime_sec": null,
+        "source": "historical report"
+      },
+      "notes": "Primary revalidation target for orb01."
+    },
+    {
+      "preset_id": "PRESET_SWV11_NIGHT_BEST",
+      "instance_scope": [
+        "swv11"
+      ],
+      "preset_type": "night-best",
+      "status": "priority-candidate",
+      "rationale": "Current best observed region for swv11 under frozen pilot workflow.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 500,
+        "swarm": 50,
+        "evalk": 3,
+        "finalk": 10000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 10000,
+        "tabu": 18,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 2983,
+        "reference_type": "best_known_solution"
+      },
+      "observed": {
+        "best_cmax": 3351,
+        "runtime_sec": 53.877171,
+        "source": "night search"
+      },
+      "notes": "Primary swv11 candidate; lower-cost settings did not hurt quality in pilot."
+    },
+    {
+      "preset_id": "PRESET_SWV11_SEED88_ALT",
+      "instance_scope": [
+        "swv11"
+      ],
+      "preset_type": "alternative-robustness",
+      "status": "candidate",
+      "rationale": "Alternative seed/swarm region retained for robustness probing.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 500,
+        "swarm": 80,
+        "evalk": 3,
+        "finalk": 10000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 10000,
+        "tabu": 18,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 2983,
+        "reference_type": "best_known_solution"
+      },
+      "observed": {
+        "best_cmax": 3375,
+        "runtime_sec": 65.736804,
+        "source": "night search"
+      },
+      "notes": "Keep only for robustness comparison unless validation suggests otherwise."
+    },
+    {
+      "preset_id": "PRESET_SWV11_HISTORICAL_LONG_TABU",
+      "instance_scope": [
+        "swv11"
+      ],
+      "preset_type": "historical-reference",
+      "status": "reference-candidate",
+      "rationale": "Historical reference region used for backward comparison.",
+      "solver_args": {
+        "sgs": "gt",
+        "iters": 2000,
+        "swarm": 80,
+        "evalk": 3,
+        "finalk": 50000,
+        "eps0": 0.0,
+        "epsmin": 0.0,
+        "fitavg": true,
+        "traindet": true,
+        "tsiters": 60000,
+        "tabu": 15,
+        "tsmove": "mixed"
+      },
+      "seed_policy": "external",
+      "reference": {
+        "reference_value": 2983,
+        "reference_type": "best_known_solution"
+      },
+      "observed": {
+        "best_cmax": 3407,
+        "runtime_sec": null,
+        "source": "historical report"
+      },
+      "notes": "Keep as historical baseline for swv11 only if validation budget allows."
+    }
+  ]
+}

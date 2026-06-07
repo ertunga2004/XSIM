@@ -1,0 +1,56 @@
+phase,instance,preset_id,seed,runtime_budget_sec,termination_mode,reference_value,reference_type,priority_group,notes
+validation,ft06,PRESET_FT06_FAST_GT,101,30,wall_clock_time,55,optimum,P1,Small sanity-check instance; fast optimum candidate.
+validation,ft06,PRESET_FT06_FAST_GT,202,30,wall_clock_time,55,optimum,P1,Small sanity-check instance; fast optimum candidate.
+validation,ft06,PRESET_FT06_FAST_GT,303,30,wall_clock_time,55,optimum,P1,Small sanity-check instance; fast optimum candidate.
+validation,ft06,PRESET_FT06_FAST_GT,404,30,wall_clock_time,55,optimum,P1,Small sanity-check instance; fast optimum candidate.
+validation,ft06,PRESET_FT06_FAST_GT,505,30,wall_clock_time,55,optimum,P1,Small sanity-check instance; fast optimum candidate.
+validation,ft06,PRESET_FT06_TABU_HISTORICAL,101,30,wall_clock_time,55,optimum,P2,Historical optimum-matching reference preset.
+validation,ft06,PRESET_FT06_TABU_HISTORICAL,202,30,wall_clock_time,55,optimum,P2,Historical optimum-matching reference preset.
+validation,ft06,PRESET_FT06_TABU_HISTORICAL,303,30,wall_clock_time,55,optimum,P2,Historical optimum-matching reference preset.
+validation,ft06,PRESET_FT06_TABU_HISTORICAL,404,30,wall_clock_time,55,optimum,P2,Historical optimum-matching reference preset.
+validation,ft06,PRESET_FT06_TABU_HISTORICAL,505,30,wall_clock_time,55,optimum,P2,Historical optimum-matching reference preset.
+validation,la19,PRESET_LA19_FAST_REPRODUCIBLE,101,120,wall_clock_time,842,optimum,P1,Fast reproducible candidate from recent validated run.
+validation,la19,PRESET_LA19_FAST_REPRODUCIBLE,202,120,wall_clock_time,842,optimum,P1,Fast reproducible candidate from recent validated run.
+validation,la19,PRESET_LA19_FAST_REPRODUCIBLE,303,120,wall_clock_time,842,optimum,P1,Fast reproducible candidate from recent validated run.
+validation,la19,PRESET_LA19_FAST_REPRODUCIBLE,404,120,wall_clock_time,842,optimum,P1,Fast reproducible candidate from recent validated run.
+validation,la19,PRESET_LA19_FAST_REPRODUCIBLE,505,120,wall_clock_time,842,optimum,P1,Fast reproducible candidate from recent validated run.
+validation,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,101,180,wall_clock_time,842,optimum,P1,Historical strongest candidate; longer budget to accommodate tabu improvement.
+validation,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,202,180,wall_clock_time,842,optimum,P1,Historical strongest candidate; longer budget to accommodate tabu improvement.
+validation,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,303,180,wall_clock_time,842,optimum,P1,Historical strongest candidate; longer budget to accommodate tabu improvement.
+validation,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,404,180,wall_clock_time,842,optimum,P1,Historical strongest candidate; longer budget to accommodate tabu improvement.
+validation,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,505,180,wall_clock_time,842,optimum,P1,Historical strongest candidate; longer budget to accommodate tabu improvement.
+validation,abz7,PRESET_ABZ7_BALANCED_NIGHT,101,180,wall_clock_time,656,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,abz7,PRESET_ABZ7_BALANCED_NIGHT,202,180,wall_clock_time,656,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,abz7,PRESET_ABZ7_BALANCED_NIGHT,303,180,wall_clock_time,656,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,abz7,PRESET_ABZ7_BALANCED_NIGHT,404,180,wall_clock_time,656,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,abz7,PRESET_ABZ7_BALANCED_NIGHT,505,180,wall_clock_time,656,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,101,240,wall_clock_time,656,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,202,240,wall_clock_time,656,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,303,240,wall_clock_time,656,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,404,240,wall_clock_time,656,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,505,240,wall_clock_time,656,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,orb01,PRESET_ORB01_BALANCED_NIGHT,101,60,wall_clock_time,1059,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,orb01,PRESET_ORB01_BALANCED_NIGHT,202,60,wall_clock_time,1059,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,orb01,PRESET_ORB01_BALANCED_NIGHT,303,60,wall_clock_time,1059,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,orb01,PRESET_ORB01_BALANCED_NIGHT,404,60,wall_clock_time,1059,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,orb01,PRESET_ORB01_BALANCED_NIGHT,505,60,wall_clock_time,1059,optimum,P1,Night best quality/time balance; swarm=100 candidate.
+validation,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,101,90,wall_clock_time,1059,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,202,90,wall_clock_time,1059,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,303,90,wall_clock_time,1059,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,404,90,wall_clock_time,1059,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,505,90,wall_clock_time,1059,optimum,P1,Historical stronger quality candidate with longer tabu horizon.
+validation,swv11,PRESET_SWV11_NIGHT_BEST,101,120,wall_clock_time,2983,best_known_solution,P1,Current best candidate; seed77-style region.
+validation,swv11,PRESET_SWV11_NIGHT_BEST,202,120,wall_clock_time,2983,best_known_solution,P1,Current best candidate; seed77-style region.
+validation,swv11,PRESET_SWV11_NIGHT_BEST,303,120,wall_clock_time,2983,best_known_solution,P1,Current best candidate; seed77-style region.
+validation,swv11,PRESET_SWV11_NIGHT_BEST,404,120,wall_clock_time,2983,best_known_solution,P1,Current best candidate; seed77-style region.
+validation,swv11,PRESET_SWV11_NIGHT_BEST,505,120,wall_clock_time,2983,best_known_solution,P1,Current best candidate; seed77-style region.
+validation,swv11,PRESET_SWV11_SEED88_ALT,101,150,wall_clock_time,2983,best_known_solution,P2,Alternative seed/swarm region for robustness comparison.
+validation,swv11,PRESET_SWV11_SEED88_ALT,202,150,wall_clock_time,2983,best_known_solution,P2,Alternative seed/swarm region for robustness comparison.
+validation,swv11,PRESET_SWV11_SEED88_ALT,303,150,wall_clock_time,2983,best_known_solution,P2,Alternative seed/swarm region for robustness comparison.
+validation,swv11,PRESET_SWV11_SEED88_ALT,404,150,wall_clock_time,2983,best_known_solution,P2,Alternative seed/swarm region for robustness comparison.
+validation,swv11,PRESET_SWV11_SEED88_ALT,505,150,wall_clock_time,2983,best_known_solution,P2,Alternative seed/swarm region for robustness comparison.
+validation,swv11,PRESET_SWV11_HISTORICAL_LONG_TABU,101,180,wall_clock_time,2983,best_known_solution,P3,Historical reference candidate for comparison.
+validation,swv11,PRESET_SWV11_HISTORICAL_LONG_TABU,202,180,wall_clock_time,2983,best_known_solution,P3,Historical reference candidate for comparison.
+validation,swv11,PRESET_SWV11_HISTORICAL_LONG_TABU,303,180,wall_clock_time,2983,best_known_solution,P3,Historical reference candidate for comparison.
+validation,swv11,PRESET_SWV11_HISTORICAL_LONG_TABU,404,180,wall_clock_time,2983,best_known_solution,P3,Historical reference candidate for comparison.
+validation,swv11,PRESET_SWV11_HISTORICAL_LONG_TABU,505,180,wall_clock_time,2983,best_known_solution,P3,Historical reference candidate for comparison.

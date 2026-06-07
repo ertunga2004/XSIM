@@ -1,0 +1,1 @@
+phase,instance,preset_id,seed,runtime_budget_sec,termination_mode,reference_value,reference_type,priority_group,run_id,run_dir,status,feasible,cmax,gap_percent,runtime_sec,result_json,metadata_json,convergence_csv,schedule_csv,notes

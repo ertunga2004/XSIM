@@ -1,0 +1,91 @@
+phase,evaluation_split,instance,preset_id,seed,runtime_budget_sec,termination_mode,reference_value,reference_type,candidate_tier,notes
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1001,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1002,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1003,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1004,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1005,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1006,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1007,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1008,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1009,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,ft06,PRESET_FT06_FAST_GT,1010,30,wall_clock_time,55,optimum,primary,Primary final sanity-check preset for small instance.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1001,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1002,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1003,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1004,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1005,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1006,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1007,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1008,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1009,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_TABU_STRONG_HISTORICAL,1010,180,wall_clock_time,842,optimum,primary,Primary final candidate because historical best quality is strongest.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1001,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1002,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1003,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1004,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1005,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1006,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1007,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1008,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1009,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,la19,PRESET_LA19_FAST_REPRODUCIBLE,1010,120,wall_clock_time,842,optimum,challenger,Reproducible fast challenger kept for robustness comparison.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1001,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1002,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1003,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1004,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1005,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1006,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1007,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1008,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1009,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_LONG_TABU_HISTORICAL,1010,240,wall_clock_time,656,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1001,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1002,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1003,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1004,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1005,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1006,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1007,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1008,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1009,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,abz7,PRESET_ABZ7_BALANCED_NIGHT,1010,180,wall_clock_time,656,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1001,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1002,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1003,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1004,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1005,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1006,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1007,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1008,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1009,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_LONG_TABU_HISTORICAL,1010,90,wall_clock_time,1059,optimum,primary,Primary final candidate because historical quality is stronger.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1001,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1002,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1003,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1004,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1005,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1006,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1007,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1008,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1009,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,orb01,PRESET_ORB01_BALANCED_NIGHT,1010,60,wall_clock_time,1059,optimum,challenger,Balanced challenger kept because runtime/quality trade-off is attractive.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1001,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1002,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1003,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1004,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1005,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1006,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1007,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1008,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1009,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_NIGHT_BEST,1010,120,wall_clock_time,2983,best_known_solution,primary,Primary final candidate because current best observed result comes from this region.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1001,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1002,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1003,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1004,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1005,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1006,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1007,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1008,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1009,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.
+final,provisional_final,swv11,PRESET_SWV11_SEED88_ALT,1010,150,wall_clock_time,2983,best_known_solution,challenger,Alternative region kept to probe seed/swarm robustness.

@@ -1,0 +1,6 @@
+instance,family,jobs,machines,reference_value,reference_type,source
+ft06,ft,6,6,55,optimum,JobShopPuzzle benchmark library (ft06 optimum 55)
+la19,la,10,10,842,optimum,JobShopPuzzle benchmark library (la19 optimum 842)
+abz7,abz,20,15,656,optimum,JobShopPuzzle benchmark library (abz7 optimum 656)
+orb01,orb,10,10,1059,optimum,JobShopPuzzle benchmark game link (orb01 known optimum 1059)
+swv11,swv,50,10,2983,best_known_solution,"Optimizizer job shop bounds table (swv11 LB=UB=2983, solved listing)"
